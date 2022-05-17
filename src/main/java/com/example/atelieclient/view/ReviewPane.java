@@ -1,6 +1,8 @@
 package com.example.atelieclient.view;
 
 import com.example.atelieclient.model.Customer;
+import com.example.atelieclient.repo.DataHandler;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
@@ -13,9 +15,11 @@ import javafx.scene.text.FontWeight;
 
 public class ReviewPane extends BorderPane {
     private ScreenController screenController;
+    private ObservableList<Customer> customers;
 
-    public ReviewPane(ScreenController screenController) {
+    public ReviewPane(ScreenController screenController, ObservableList<Customer> customers) {
         this.screenController = screenController;
+        this.customers = customers;
         init();
     }
 
@@ -32,8 +36,8 @@ public class ReviewPane extends BorderPane {
         return headerLabel;
     }
 
-    private TableView createTableView() {
-        TableView tableView = new TableView();
+    private TableView<Customer> createTableView() {
+        TableView<Customer> tableView = new TableView(customers);
 
         TableColumn<Customer, String> column1 = new TableColumn<>("Имя");
         column1.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -47,10 +51,9 @@ public class ReviewPane extends BorderPane {
         TableColumn<Customer, String> column4 = new TableColumn<>("Телефон");
         column4.setCellValueFactory(new PropertyValueFactory<>("phone"));
 
-        tableView.getColumns().add(column1);
-        tableView.getColumns().add(column2);
-        tableView.getColumns().add(column3);
-        tableView.getColumns().add(column4);
+        tableView.getColumns().addAll(column1, column2, column3, column4);
+
+
 
         return tableView;
     }

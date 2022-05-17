@@ -1,5 +1,6 @@
 package com.example.atelieclient.view;
 
+import com.example.atelieclient.repo.DataHandler;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -15,37 +16,44 @@ public class CreateCustomerPane extends BorderPane {
     }
 
     private void init() {
-        this.setCenter(createFormFields());
+        this.setCenter(createInputPane());
         this.setBottom(createButtonPane());
     }
 
-    private GridPane createFormFields() {
-        GridPane gridPane = new GridPane();
-
-        Text txtFirstname = new Text("Имя");
-        TextField firstname = new TextField();
-        Text txtLastname = new Text("Фамилия");
-        TextField lastname = new TextField();
-        Text txtMiddleName = new Text("Отчество");
-        TextField middleName = new TextField();
-        Text txtPhone = new Text("Телефон");
-        TextField phone = new TextField();
-
-        gridPane.add(txtFirstname, 0, 0);
-        gridPane.add(txtLastname, 0, 1);
-        gridPane.add(txtMiddleName, 0, 2);
-        gridPane.add(txtPhone, 0, 3);
-
-        gridPane.add(firstname, 1, 0);
-        gridPane.add(lastname, 1, 1);
-        gridPane.add(middleName, 1, 2);
-        gridPane.add(phone, 1, 3);
-
-        return gridPane;
+    private InputPane createInputPane() {
+        return new InputPane();
     }
 
     private ButtonPane createButtonPane() {
         return new ButtonPane();
+    }
+
+    private class InputPane extends GridPane{
+        private Text txtFirstname = new Text("Имя");
+        private TextField firstname = new TextField();
+        private Text txtLastname = new Text("Фамилия");
+        private TextField lastname = new TextField();
+        private Text txtMiddleName = new Text("Отчество");
+        private TextField middleName = new TextField();
+        private Text txtPhone = new Text("Телефон");
+        private TextField phone = new TextField();
+
+        public InputPane() {
+            init();
+        }
+
+        private void init() {
+            getChildren().addAll(
+                    txtFirstname,
+                    txtLastname,
+                    txtMiddleName,
+                    txtPhone,
+                    firstname,
+                    lastname,
+                    middleName,
+                    phone
+            );
+        }
     }
 
     private class ButtonPane extends HBox {
@@ -63,8 +71,7 @@ public class CreateCustomerPane extends BorderPane {
             button.setText("Ввести");
             button.setOnAction((event) -> {
                 System.out.println("Button Input Customer clicked!");
-
-
+                fireEvent(new AppEvent(AppEvent.CREATE_CUSTOMER));
             });
 
             return button;
