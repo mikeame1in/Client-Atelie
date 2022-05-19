@@ -1,13 +1,16 @@
 package com.example.atelieclient.view;
 
 import com.example.atelieclient.model.Customer;
-import com.example.atelieclient.repo.DataHandler;
+import com.example.atelieclient.view.event.AppEvent;
+import com.example.atelieclient.view.event.CreateCustomerEvent;
+import com.example.atelieclient.view.event.DeleteCustomerEvent;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Font;
@@ -16,6 +19,7 @@ import javafx.scene.text.FontWeight;
 public class ReviewPane extends BorderPane {
     private ScreenController screenController;
     private ObservableList<Customer> customers;
+    private Customer selectedCustomer;
 
     public ReviewPane(ScreenController screenController, ObservableList<Customer> customers) {
         this.screenController = screenController;
@@ -53,7 +57,11 @@ public class ReviewPane extends BorderPane {
 
         tableView.getColumns().addAll(column1, column2, column3, column4);
 
-
+        tableView.setOnMouseClicked((MouseEvent event) -> {
+            if (tableView.getSelectionModel().getSelectedItem() != null) {
+                selectedCustomer = tableView.getSelectionModel().getSelectedItem();
+            }
+        });
 
         return tableView;
     }
@@ -74,7 +82,7 @@ public class ReviewPane extends BorderPane {
             button.setText("Создать");
             button.setOnAction((event) -> {
                 System.out.println("Button Create Customer clicked!");
-                screenController.activate("CreateCustomerPane");
+                fireEvent(new CreateCustomerEvent(AppEvent.CREATE_CUSTOMER));
             });
 
             return button;
@@ -86,6 +94,7 @@ public class ReviewPane extends BorderPane {
             button.setText("Удалить");
             button.setOnAction((event) -> {
                 System.out.println("Button Delete Customer clicked!");
+                fireEvent(new DeleteCustomerEvent(AppEvent.DELETE_CUSTOMER, selectedCustomer));
             });
 
             return button;

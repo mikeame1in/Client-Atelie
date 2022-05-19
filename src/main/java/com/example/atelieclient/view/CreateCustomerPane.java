@@ -1,6 +1,8 @@
 package com.example.atelieclient.view;
 
-import com.example.atelieclient.repo.DataHandler;
+import com.example.atelieclient.model.Customer;
+import com.example.atelieclient.view.event.AppEvent;
+import com.example.atelieclient.view.event.SaveCustomerEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -10,14 +12,19 @@ import javafx.scene.text.Text;
 
 public class CreateCustomerPane extends BorderPane {
     private ScreenController screenController;
+    private InputPane inputPane;
+    private ButtonPane buttonPane;
+
     public CreateCustomerPane(ScreenController screenController) {
         this.screenController = screenController;
         init();
     }
 
     private void init() {
-        this.setCenter(createInputPane());
-        this.setBottom(createButtonPane());
+        inputPane = createInputPane();
+        buttonPane = createButtonPane();
+        setCenter(inputPane);
+        setBottom(buttonPane);
     }
 
     private InputPane createInputPane() {
@@ -28,7 +35,7 @@ public class CreateCustomerPane extends BorderPane {
         return new ButtonPane();
     }
 
-    private class InputPane extends GridPane{
+    class InputPane extends GridPane{
         private Text txtFirstname = new Text("Имя");
         private TextField firstname = new TextField();
         private Text txtLastname = new Text("Фамилия");
@@ -43,6 +50,15 @@ public class CreateCustomerPane extends BorderPane {
         }
 
         private void init() {
+            setConstraints(txtFirstname, 0, 0);
+            setConstraints(txtLastname, 0, 1);
+            setConstraints(txtMiddleName, 0, 2);
+            setConstraints(txtPhone, 0, 3);
+            setConstraints(firstname, 1, 0);
+            setConstraints(lastname, 1, 1);
+            setConstraints(middleName, 1, 2);
+            setConstraints(phone, 1, 3);
+
             getChildren().addAll(
                     txtFirstname,
                     txtLastname,
@@ -53,6 +69,14 @@ public class CreateCustomerPane extends BorderPane {
                     middleName,
                     phone
             );
+        }
+
+        private Customer customer() {
+            return new Customer(
+                    firstname.getText(),
+                    lastname.getText(),
+                    middleName.getText(),
+                    phone.getText());
         }
     }
 
@@ -71,7 +95,7 @@ public class CreateCustomerPane extends BorderPane {
             button.setText("Ввести");
             button.setOnAction((event) -> {
                 System.out.println("Button Input Customer clicked!");
-                fireEvent(new AppEvent(AppEvent.CREATE_CUSTOMER));
+                fireEvent(new SaveCustomerEvent(AppEvent.SAVE_CUSTOMER, inputPane.customer()));
             });
 
             return button;

@@ -10,4 +10,6 @@ module com.example.atelieclient {
     opens com.example.atelieclient.view to javafx.fxml;
     exports com.example.atelieclient.repo;
     opens com.example.atelieclient.repo to javafx.fxml;
+    exports com.example.atelieclient.view.event;
+    opens com.example.atelieclient.view.event to javafx.fxml;
 }
