@@ -3,8 +3,10 @@ package com.example.atelieclient.application.port.out;
 import com.example.atelieclient.domain.model.Order;
 import javafx.collections.ObservableList;
 
+import java.util.List;
+
 public interface OrderRepo {
-    void createCustomer(Order customer);
-    void deleteCustomer(Order customer);
-    ObservableList<Order> customerObservableList();
+    void createOrder(Order order);
+    void deleteOrder(Order order);
+    List<Order> getAllCustomerOrders(Long customerId);
 }

@@ -4,6 +4,7 @@ import com.example.atelieclient.domain.model.Customer;
 import com.example.atelieclient.infrastucture.view.event.AppEvent;
 import com.example.atelieclient.infrastucture.view.event.CreateCustomerEvent;
 import com.example.atelieclient.infrastucture.view.event.DeleteCustomerEvent;
+import com.example.atelieclient.infrastucture.view.event.SeeCustomerDetailsEvent;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -17,12 +18,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
 public class ReviewPane extends BorderPane {
-    private ScreenController screenController;
     private ObservableList<Customer> customers;
     private Customer selectedCustomer;
 
-    public ReviewPane(ScreenController screenController, ObservableList<Customer> customers) {
-        this.screenController = screenController;
+    public ReviewPane(ObservableList<Customer> customers) {
         this.customers = customers;
         init();
     }
@@ -73,6 +72,7 @@ public class ReviewPane extends BorderPane {
 
         private void init() {
             this.getChildren().add(addCreateButton());
+            this.getChildren().add(addDetailsButton());
             this.getChildren().add(addDeleteButton());
         }
 
@@ -83,6 +83,18 @@ public class ReviewPane extends BorderPane {
             button.setOnAction((event) -> {
                 System.out.println("Button Create Customer clicked!");
                 fireEvent(new CreateCustomerEvent(AppEvent.CREATE_CUSTOMER));
+            });
+
+            return button;
+        }
+
+        private Button addDetailsButton() {
+            Button button = new Button();
+
+            button.setText("Детали");
+            button.setOnAction((event) -> {
+                System.out.println("Button Details of Customer clicked!");
+                fireEvent(new SeeCustomerDetailsEvent(AppEvent.SEE_CUSTOMER_DETAILS, selectedCustomer));
             });
 
             return button;

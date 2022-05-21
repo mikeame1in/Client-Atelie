@@ -1,6 +1,7 @@
 module com.example.atelieclient {
     requires javafx.controls;
     requires javafx.fxml;
+    requires java.sql;
 
 
     opens com.example.atelieclient to javafx.fxml;

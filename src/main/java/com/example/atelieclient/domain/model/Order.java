@@ -1,10 +1,11 @@
 package com.example.atelieclient.domain.model;
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 
 public class Order extends Entity {
     private String article;
     private Timestamp acceptanceTime;
+    private Long customerId;
 
     public Order(String article, Timestamp acceptanceTime) {
         this.article = article;
@@ -17,5 +18,13 @@ public class Order extends Entity {
 
     public Timestamp getAcceptanceTime() {
         return acceptanceTime;
+    }
+
+    public Long getCustomerId() {
+        return customerId;
+    }
+
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 }

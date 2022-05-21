@@ -11,12 +11,10 @@ import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
 
 public class CreateCustomerPane extends BorderPane {
-    private ScreenController screenController;
     private InputPane inputPane;
     private ButtonPane buttonPane;
 
-    public CreateCustomerPane(ScreenController screenController) {
-        this.screenController = screenController;
+    public CreateCustomerPane() {
         init();
     }
 
