@@ -1,8 +1,8 @@
-package com.example.atelieclient.view;
+package com.example.atelieclient.infrastucture.view;
 
-import com.example.atelieclient.model.Customer;
-import com.example.atelieclient.view.event.AppEvent;
-import com.example.atelieclient.view.event.SaveCustomerEvent;
+import com.example.atelieclient.domain.model.Customer;
+import com.example.atelieclient.infrastucture.view.event.AppEvent;
+import com.example.atelieclient.infrastucture.view.event.SaveCustomerEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;

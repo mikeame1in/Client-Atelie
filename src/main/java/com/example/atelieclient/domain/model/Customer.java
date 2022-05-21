@@ -1,10 +1,10 @@
-package com.example.atelieclient.model;
+package com.example.atelieclient.domain.model;
 
-public class Customer {
-    private final String firstName;
-    private final String lastName;
-    private final String middleName;
-    private final String phone;
+public class Customer extends Entity {
+    private String firstName;
+    private String lastName;
+    private String middleName;
+    private String phone;
 
     public Customer(String firstName, String lastName, String middleName, String phone) {
         this.firstName = firstName;

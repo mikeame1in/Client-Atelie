@@ -1,4 +1,4 @@
-package com.example.atelieclient.view.event;
+package com.example.atelieclient.infrastucture.view.event;
 
 import javafx.event.Event;
 import javafx.event.EventType;

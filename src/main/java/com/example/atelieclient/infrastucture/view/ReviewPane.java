@@ -1,9 +1,9 @@
-package com.example.atelieclient.view;
+package com.example.atelieclient.infrastucture.view;
 
-import com.example.atelieclient.model.Customer;
-import com.example.atelieclient.view.event.AppEvent;
-import com.example.atelieclient.view.event.CreateCustomerEvent;
-import com.example.atelieclient.view.event.DeleteCustomerEvent;
+import com.example.atelieclient.domain.model.Customer;
+import com.example.atelieclient.infrastucture.view.event.AppEvent;
+import com.example.atelieclient.infrastucture.view.event.CreateCustomerEvent;
+import com.example.atelieclient.infrastucture.view.event.DeleteCustomerEvent;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
