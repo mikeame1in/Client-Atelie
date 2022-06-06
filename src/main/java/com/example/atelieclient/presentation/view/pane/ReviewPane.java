@@ -1,10 +1,10 @@
-package com.example.atelieclient.infrastucture.view;
+package com.example.atelieclient.presentation.view.pane;
 
 import com.example.atelieclient.domain.model.Customer;
-import com.example.atelieclient.infrastucture.view.event.AppEvent;
-import com.example.atelieclient.infrastucture.view.event.CreateCustomerEvent;
-import com.example.atelieclient.infrastucture.view.event.DeleteCustomerEvent;
-import com.example.atelieclient.infrastucture.view.event.SeeCustomerDetailsEvent;
+import com.example.atelieclient.presentation.view.event.AppEvent;
+import com.example.atelieclient.presentation.view.event.GetCreateCustomerPaneEvent;
+import com.example.atelieclient.presentation.view.event.DeleteCustomerEvent;
+import com.example.atelieclient.presentation.view.event.GetCustomerDetailsPaneEvent;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -82,7 +82,7 @@ public class ReviewPane extends BorderPane {
             button.setText("Создать");
             button.setOnAction((event) -> {
                 System.out.println("Button Create Customer clicked!");
-                fireEvent(new CreateCustomerEvent(AppEvent.CREATE_CUSTOMER));
+                fireEvent(new GetCreateCustomerPaneEvent(AppEvent.GET_CREATE_CUSTOMER_PANE));
             });
 
             return button;
@@ -94,7 +94,7 @@ public class ReviewPane extends BorderPane {
             button.setText("Детали");
             button.setOnAction((event) -> {
                 System.out.println("Button Details of Customer clicked!");
-                fireEvent(new SeeCustomerDetailsEvent(AppEvent.SEE_CUSTOMER_DETAILS, selectedCustomer));
+                fireEvent(new GetCustomerDetailsPaneEvent(AppEvent.GET_CUSTOMER_DETAILS_PANE, selectedCustomer));
             });
 
             return button;

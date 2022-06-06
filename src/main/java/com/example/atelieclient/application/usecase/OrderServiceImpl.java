@@ -17,8 +17,10 @@ public class OrderServiceImpl implements OrderService {
         this.customers = customers;
     }
 
-    public void createOrder(Long customerId, Order order) {}
-    public void deleteOrder(Long customerId, Order order) {}
+    @Override
+    public void createOrder(Order order) {orders.createOrder(order);}
+    @Override
+    public void deleteOrder(Order order) {orders.deleteOrder(order);}
 
     public List<Order> getAllCustomerOrders(Long customerId) { return orders.getAllCustomerOrders(customerId);}
     public Optional<Order> getOrder(Long orderId) { return Optional.empty();}

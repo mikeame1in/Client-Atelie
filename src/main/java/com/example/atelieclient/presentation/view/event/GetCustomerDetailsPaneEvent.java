@@ -1,12 +1,12 @@
-package com.example.atelieclient.infrastucture.view.event;
+package com.example.atelieclient.presentation.view.event;
 
 import com.example.atelieclient.domain.model.Customer;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-public class SeeCustomerDetailsEvent extends AppEvent{
+public class GetCustomerDetailsPaneEvent extends AppEvent{
     private final Customer customer;
-    public SeeCustomerDetailsEvent(EventType<? extends Event> eventType, Customer customer) {
+    public GetCustomerDetailsPaneEvent(EventType<? extends Event> eventType, Customer customer) {
         super(eventType);
         this.customer = customer;
     }

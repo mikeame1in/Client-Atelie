@@ -1,13 +1,13 @@
-package com.example.atelieclient.infrastucture.view.event;
+package com.example.atelieclient.presentation.view.event;
 
 import com.example.atelieclient.domain.model.Customer;
 import javafx.event.Event;
 import javafx.event.EventType;
 
-public class SaveCustomerEvent extends AppEvent{
+public class DeleteCustomerEvent extends AppEvent{
     private final Customer customer;
 
-    public SaveCustomerEvent(EventType<? extends Event> eventType, Customer customer) {
+    public DeleteCustomerEvent(EventType<? extends Event> eventType, Customer customer) {
         super(eventType);
         this.customer = customer;
     }

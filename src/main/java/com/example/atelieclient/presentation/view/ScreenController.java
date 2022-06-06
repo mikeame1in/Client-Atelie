@@ -1,4 +1,4 @@
-package com.example.atelieclient.infrastucture.view;
+package com.example.atelieclient.presentation.view;
 
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;

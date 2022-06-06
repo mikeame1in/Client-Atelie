@@ -1,7 +1,6 @@
-package com.example.atelieclient.infrastucture.controller;
+package com.example.atelieclient.presentation.controller;
 
 import com.example.atelieclient.application.port.in.OrderService;
-import com.example.atelieclient.application.usecase.OrderServiceImpl;
 import com.example.atelieclient.domain.model.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -15,8 +14,8 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    public void createOrder(){}
-    public void removeOrder(){}
+    public void createOrder(Order order){orderService.createOrder(order);}
+    public void deleteOrder(Order order){orderService.deleteOrder(order);}
 
     public ObservableList<Order> getAllCustomerOrders(Long customerId) {
         List<Order> orderList = orderService.getAllCustomerOrders(customerId);

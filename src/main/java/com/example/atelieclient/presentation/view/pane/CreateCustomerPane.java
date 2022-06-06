@@ -1,8 +1,9 @@
-package com.example.atelieclient.infrastucture.view;
+package com.example.atelieclient.presentation.view.pane;
 
 import com.example.atelieclient.domain.model.Customer;
-import com.example.atelieclient.infrastucture.view.event.AppEvent;
-import com.example.atelieclient.infrastucture.view.event.SaveCustomerEvent;
+import com.example.atelieclient.presentation.view.event.AppEvent;
+import com.example.atelieclient.presentation.view.event.CreateCustomerEvent;
+import com.example.atelieclient.presentation.view.event.GetReviewPane;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -93,7 +94,7 @@ public class CreateCustomerPane extends BorderPane {
             button.setText("Ввести");
             button.setOnAction((event) -> {
                 System.out.println("Button Input Customer clicked!");
-                fireEvent(new SaveCustomerEvent(AppEvent.SAVE_CUSTOMER, inputPane.customer()));
+                fireEvent(new CreateCustomerEvent(AppEvent.CREATE_CUSTOMER, inputPane.customer()));
             });
 
             return button;
@@ -103,8 +104,7 @@ public class CreateCustomerPane extends BorderPane {
             button.setText("Отмена");
             button.setOnAction((event) -> {
                 System.out.println("Button Cancel Customer clicked!");
-
-
+                fireEvent(new GetReviewPane(AppEvent.GET_REVIEW_PANE));
             });
 
             return button;

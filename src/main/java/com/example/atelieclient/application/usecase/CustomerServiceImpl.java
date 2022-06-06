@@ -14,13 +14,20 @@ public class CustomerServiceImpl implements CustomerService {
         this.customers = customers;
     }
 
+    @Override
     public void createCustomer(Customer customer) {customers.createCustomer(customer);}
+    @Override
     public void deleteCustomer(Customer customer) {customers.deleteCustomer(customer);}
-
     @Override
     public List<Customer> getAllCustomers() {
         return customers.getAllCustomers();
     }
-
-    public Optional<Customer> getCustomer(Long customerId) { return Optional.empty();}
+    @Override
+    public Customer getCustomer(Long customerId) {
+        Optional<Customer> customer = customers.getCustomerById(customerId);
+        if (customer.isEmpty()) {
+            throw new IllegalArgumentException("Customer with this id don't exist");
+        }
+        return customer.get();
+    }
 }

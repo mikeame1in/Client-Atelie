@@ -12,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 public class OrderRepoImpl implements OrderRepo {
@@ -25,12 +26,12 @@ public class OrderRepoImpl implements OrderRepo {
                 DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
                 Date date1 = dateFormat.parse("23/09/2007");
-                Order order1 = new Order("Куртка", new Timestamp(date1.getTime()));
+                Order order1 = new Order("Куртка", new Timestamp(date1.getTime()), Long.valueOf(1));
                 order1.setId(Long.valueOf(1));
                 order1.setCustomerId(Long.valueOf(1));
 
                 Date date2 = dateFormat.parse("23/05/2015");
-                Order order2 = new Order("Куртка", new Timestamp(date2.getTime()));
+                Order order2 = new Order("Куртка", new Timestamp(date2.getTime()), Long.valueOf(1));
                 order2.setId(Long.valueOf(2));
                 order2.setCustomerId(Long.valueOf(2));
 

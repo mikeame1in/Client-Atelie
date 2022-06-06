@@ -1,7 +1,6 @@
-package com.example.atelieclient.infrastucture.controller;
+package com.example.atelieclient.presentation.controller;
 
 import com.example.atelieclient.application.port.in.CustomerService;
-import com.example.atelieclient.application.usecase.CustomerServiceImpl;
 import com.example.atelieclient.domain.model.Customer;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,5 +25,9 @@ public class CustomerController {
     public ObservableList<Customer> getAllCustomers() {
         List<Customer> customerList = customerService.getAllCustomers();
         return FXCollections.observableArrayList(customerList);
+    }
+
+    public Customer getCustomer(Long customerId) {
+        return customerService.getCustomer(customerId);
     }
 }

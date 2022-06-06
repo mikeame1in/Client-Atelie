@@ -7,9 +7,10 @@ public class Order extends Entity {
     private Timestamp acceptanceTime;
     private Long customerId;
 
-    public Order(String article, Timestamp acceptanceTime) {
+    public Order(String article, Timestamp acceptanceTime, Long customerId) {
         this.article = article;
         this.acceptanceTime = acceptanceTime;
+        this.customerId = customerId;
     }
 
     public String getArticle() {

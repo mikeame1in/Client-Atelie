@@ -1,7 +1,11 @@
-package com.example.atelieclient.infrastucture.view;
+package com.example.atelieclient.presentation.view.pane;
 
 import com.example.atelieclient.domain.model.Customer;
 import com.example.atelieclient.domain.model.Order;
+import com.example.atelieclient.presentation.view.event.AppEvent;
+import com.example.atelieclient.presentation.view.event.DeleteOrderEvent;
+import com.example.atelieclient.presentation.view.event.GetCreateOrderPaneEvent;
+import com.example.atelieclient.presentation.view.event.GetReviewPane;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
@@ -11,6 +15,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.text.Text;
+import javafx.scene.input.MouseEvent;
 
 public class CustomerDetailsPane extends BorderPane {
     private CustomerPersonInfoPane customerPersonInfoPane;
@@ -18,6 +23,8 @@ public class CustomerDetailsPane extends BorderPane {
     private ButtonPane buttonPane;
     private Customer selectedCustomer;
     private ObservableList<Order> customerOrders;
+    private Order selectedOrder;
+
 
     public CustomerDetailsPane(Customer selectedCustomer, ObservableList<Order> customerOrders) {
         this.selectedCustomer = selectedCustomer;
@@ -97,6 +104,12 @@ public class CustomerDetailsPane extends BorderPane {
             column2.setCellValueFactory(new PropertyValueFactory<>("acceptanceTime"));
 
             getColumns().addAll(column1, column2);
+
+            setOnMouseClicked((MouseEvent event) -> {
+                if (this.getSelectionModel().getSelectedItem() != null) {
+                    selectedOrder = this.getSelectionModel().getSelectedItem();
+                }
+            });
         }
     }
 
@@ -107,23 +120,38 @@ public class CustomerDetailsPane extends BorderPane {
 
         private void init() {
             this.getChildren().add(addCreateOrderButton());
-            this.getChildren().add(addCancelButton());
+            this.getChildren().add(addDeleteOrderButton());
+            this.getChildren().add(addBackButton());
         }
 
         private Button addCreateOrderButton() {
             Button button = new Button();
-            button.setText("Ввести");
+            button.setText("Новый Заказ");
             button.setOnAction((event) -> {
                 System.out.println("Button Create Order clicked!");
+                fireEvent(new GetCreateOrderPaneEvent(AppEvent.GET_CREATE_ORDER_PANE, selectedCustomer.getId()));
             });
 
             return button;
         }
-        private Button addCancelButton() {
+
+        private Button addDeleteOrderButton() {
             Button button = new Button();
-            button.setText("Отмена");
+            button.setText("Удалить");
             button.setOnAction((event) -> {
-                System.out.println("Button Cancel of Customer Details Win clicked!");
+                System.out.println("Button Delete Order clicked!");
+                fireEvent(new DeleteOrderEvent(AppEvent.DELETE_ORDER, selectedOrder));
+            });
+
+            return button;
+        }
+
+        private Button addBackButton() {
+            Button button = new Button();
+            button.setText("Назад");
+            button.setOnAction((event) -> {
+                System.out.println("Button Back from Customer Details Win clicked!");
+                fireEvent(new GetReviewPane(AppEvent.GET_REVIEW_PANE));
             });
 
             return button;

@@ -5,7 +5,9 @@ import com.example.atelieclient.domain.model.Customer;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 public class CustomerRepoImpl implements CustomerRepo {
     private List<Customer> customers = null;
@@ -37,5 +39,10 @@ public class CustomerRepoImpl implements CustomerRepo {
     @Override
     public List<Customer> getAllCustomers() {
         return getCustomers();
+    }
+
+    @Override
+    public Optional<Customer> getCustomerById(Long customerId) {
+        return customers.stream().filter(item -> item.getId().equals(customerId)).findFirst();
     }
 }
